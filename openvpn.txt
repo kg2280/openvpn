@@ -1,0 +1,4 @@
+To revoke a certificate :
+source ../vars 
+../revoke-full samir
+
