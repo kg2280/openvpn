@@ -8,7 +8,7 @@
 VPN_NAME=mastervpn
 
 ## Check if there is an argument passed.  If so, set the $VPN_NAME variable
-if [[ $#==1 ]]
+if (( $#==1 ))
 then
   VPN_NAME=$1
   echo "VPN_NAME will be $VPN_NAME"
@@ -18,6 +18,8 @@ fi
 if [ -d /etc/openvpn/$VPN_NAME ]
 then
   echo "There is already a config under /etc/openvpn/$VPN_NAME.  Delete the directory first.  rm -rf /etc/openvpn/$VPN_NAME"
+  echo "Or you can pass an other name to the vpn as an argument to the script"
+  echo "Ex. $0 vpn2"
   exit
 fi
 
