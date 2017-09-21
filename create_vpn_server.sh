@@ -7,6 +7,13 @@
 
 VPN_NAME=mastervpn
 
+## Check if there is an argument passed.  If so, set the $VPN_NAME variable
+if [[ $#==1 ]]
+then
+  VPN_NAME=$1
+  echo "VPN_NAME will be $VPN_NAME"
+fi
+
 ## Check if there is already a config this vpn.
 if [ -d /etc/openvpn/$VPN_NAME ]
 then
