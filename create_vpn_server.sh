@@ -7,6 +7,13 @@
 
 VPN_NAME=mastervpn
 
+## Check if there is already a config this vpn.
+if [ -d /etc/openvpn/$VPN_NAME ]
+then
+  echo "There is already a config under /etc/openvpn/$VPN_NAME.  Delete the directory first.  rm -rf /etc/openvpn/$VPN_NAME"
+  exit
+fi
+
 ## Check if openvpn is installed.  If not, install it
 if [[ `dpkg -s openvpn | grep Status` =~ "Status: install ok installed" ]]
 then
@@ -16,7 +23,7 @@ else
   apt-get update && apt-get dist-upgrade -y && install openvpn easy-rsa -y
 fi
 
-## Create vpn folder and download openvpn_server.conf
+## Create vpn folder and download openvpn_server.conf.
 mkdir -p /etc/openvpn/$VPN_NAME
 cp ./openvpn_server.conf /etc/openvpn/$VPN_NAME.conf
 
@@ -26,7 +33,7 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 
 ## Create RSA working directory
 make-cadir /etc/openvpn/$VPN_NAME/easy-rsa && cd /etc/openvpn/$VPN_NAME/easy-rsa/
-ln -s openssl-1.0.0.cnf openssl.cnf
+ln -s /etc/openvpn/$VPN_NAME/easy-rsa/openssl-1.0.0.cnf /etc/openvpn/$VPN_NAME/easy-rsa/openssl.cnf
 
 ## Setup RSA vars
 sed -i 's/export KEY_SIZE=.*/export KEY_SIZE=4096/g' /etc/openvpn/$VPN_NAME/easy-rsa/vars
