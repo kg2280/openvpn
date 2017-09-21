@@ -53,11 +53,11 @@ sed -i 's/export KEY_ORG=.*/export KEY_ORG="IT"/g' /etc/openvpn/$VPN_NAME/easy-r
 sed -i 's/export KEY_EMAIL=.*/export KEY_EMAIL="noc@cdmsfirst.com"/g' /etc/openvpn/$VPN_NAME/easy-rsa/vars
 
 ## Setup key, cert and dh path in server.conf
-sed -i 's|ca /etc/openvpn/mastervpn/easy-rsa/keys/ca.crt|ca /etc/openvpn/$VPN_NAME/easy-rsa/keys/ca.crt|g' /etc/openvpn/$VPN_NAME.conf
-sed -i 's|cert /etc/openvpn/mastervpn/easy-rsa/keys/vpn.crt|cert /etc/openvpn/$VPN_NAME/easy-rsa/keys/vpn.crt|g' /etc/openvpn/$VPN_NAME.conf
-sed -i 's|key /etc/openvpn/mastervpn/easy-rsa/keys/vpn.key|key /etc/openvpn/mastervpn/easy-rsa/keys/vpn.key|g' /etc/openvpn/$VPN_NAME.conf
-sed -i 's|dh /etc/openvpn/mastervpn/easy-rsa/keys/dh4096.pem|dh /etc/openvpn/$VPN_NAME/easy-rsa/keys/dh4096.pem|g' /etc/openvpn/$VPN_NAME.conf
-sed -i 's|tls-auth /etc/openvpn/mastervpn/easy-rsa/keys/ta.key|tls-auth /etc/openvpn/$VPN_NAME/easy-rsa/keys/ta.key|g' /etc/openvpn/$VPN_NAME.conf
+sed -i "s|ca /etc/openvpn/mastervpn/easy-rsa/keys/ca.crt|ca /etc/openvpn/$VPN_NAME/easy-rsa/keys/ca.crt|g" /etc/openvpn/$VPN_NAME.conf
+sed -i "s|cert /etc/openvpn/mastervpn/easy-rsa/keys/vpn.crt|cert /etc/openvpn/$VPN_NAME/easy-rsa/keys/vpn.crt|g" /etc/openvpn/$VPN_NAME.conf
+sed -i "s|key /etc/openvpn/mastervpn/easy-rsa/keys/vpn.key|key /etc/openvpn/mastervpn/easy-rsa/keys/vpn.key|g" /etc/openvpn/$VPN_NAME.conf
+sed -i "s|dh /etc/openvpn/mastervpn/easy-rsa/keys/dh4096.pem|dh /etc/openvpn/$VPN_NAME/easy-rsa/keys/dh4096.pem|g" /etc/openvpn/$VPN_NAME.conf
+sed -i "s|tls-auth /etc/openvpn/mastervpn/easy-rsa/keys/ta.key|tls-auth /etc/openvpn/$VPN_NAME/easy-rsa/keys/ta.key|g" /etc/openvpn/$VPN_NAME.conf
 
 ## Source the vars script and delete all key
 cd /etc/openvpn/$VPN_NAME/easy-rsa && source ./vars
