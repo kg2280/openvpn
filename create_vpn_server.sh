@@ -17,9 +17,8 @@ else
 fi
 
 ## Create vpn folder and download openvpn_server.conf
-mdkir -p /etc/openvpn/$VPN_NAME
-git clone 
-
+mkdir -p /etc/openvpn/$VPN_NAME
+cp ./openvpn_server.conf /etc/openvpn/$VPN_NAME/
 
 ## Enable ip forward
 echo 1 > /proc/sys/net/ipv4/ip_forward
