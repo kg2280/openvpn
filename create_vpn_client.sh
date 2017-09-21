@@ -5,7 +5,8 @@
 ##  Date : 28 Sept 2015
 ##  Coded for : Modulis
 
-RSA_DIR=/etc/openvpn/mastervpn/easy-rsa2
+VPN_NAME=mastervpn
+RSA_DIR=/etc/openvpn/$VPN_NAME/easy-rsa
 
 if [ $# != 1 ]
 then
@@ -24,7 +25,7 @@ echo """client
 tls-client
 dev tun
 port 9195
-proto tcp
+proto udp
 
 remote 199.182.132.7             # VPN server IP : PORT
 nobind
@@ -37,7 +38,8 @@ pkcs12 /etc/openvpn/$1.p12
 comp-lzo
 persist-key
 persist-tun
-tls-cipher ECDHE-RSA-AES256-GCM-SHA384
+#tls-cipher ECDHE-RSA-AES256-GCM-SHA384
+tls-cipher TLS-DHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-128-GCM-SHA256:TLS-DHE-RSA-WITH-AES-256-CBC-SHA:TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA:TLS-DHE-RSA-WITH-AES-128-CBC-SHA:TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA
 cipher AES-256-CBC
 auth sha512
 tls-auth /etc/openvpn/ta.key 1
